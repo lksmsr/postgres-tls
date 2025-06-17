@@ -1,14 +1,5 @@
 FROM postgres:17.5
 
-ARG SERVER_CRT
-ARG SERVER_KEY
-ARG ROOT_CA_CRT
-
-# Write certificate files from build args
-RUN echo "$SERVER_CRT" > /var/lib/postgresql/server.crt \
-    && echo "$SERVER_KEY" > /var/lib/postgresql/server.key \
-    && echo "$ROOT_CA_CRT" > /var/lib/postgresql/rootCA.crt
-
 # Copy the pg_hba.conf override script
 COPY ssh-config.sh /docker-entrypoint-initdb.d/ssh-config.sh
 
