@@ -1,10 +1,10 @@
 FROM postgres:17.5
 
 # Copy the pg_hba.conf override script
-COPY ssh-config.sh /docker-entrypoint-initdb.d/ssh-config.sh
+COPY ssl-config.sh /docker-entrypoint-initdb.d/ssl-config.sh
 
 # Set file permissions
-RUN chmod +x /docker-entrypoint-initdb.d/ssh-config.sh && \
+RUN chmod +x /docker-entrypoint-initdb.d/ssl-config.sh && \
     chmod 600 /var/lib/postgresql/server.* /var/lib/postgresql/rootCA.crt && \
     chown postgres:postgres /var/lib/postgresql/server.* /var/lib/postgresql/rootCA.crt
 
